@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cad-experiments"
+version = "0.1.0"
+description = "mel's messing around with CAD"
+authors = ["Mel Bourgeois <mason.bourgeois@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+build123d = "^0.5.0"
+yacv-server = "^0.8.10"
+
+[tool.poetry.scripts]
+test = 'test:main'
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
