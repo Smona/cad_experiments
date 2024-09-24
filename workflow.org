@@ -1,0 +1,125 @@
+#+title: Initial Workflow Experiments
+#+PROPERTY: header-args :results silent :session cad
+
+I didn't get very far into learning CAD before I inevitably fell down the
+workflow rabbit hole. I started out just looking for the best open source CAD
+software out there, with the assumption that things were generally pretty
+GUI-based. But I pretty quickly stumbled upon the world of Code-CAD.
+
+I was immediately enamored by the promise of perfectly parameterizing any
+designs I might make, the same way I do other code that I write -- maintaining
+the ability to tweak things later while preserving important relationships
+between components. And I wasn't too excited about the prospect of learning an
+inherently mouse-heavy workflow, which seems like it would just be less
+efficient when it comes to designing precise parts. I went ahead and installed
+FreeCAD, and I'm sure I'll be using it extensively for more artistic work or
+design validation, but I'm feeling more drawn to the Code-CAD world so far.
+
+OpenSCAD was the first code-first CAD tool I learned about. I wasn't super
+excited about learning yet another DSL, and while looking into it I found lots
+of people talking about how its mesh-based CSG approach was fundamentally
+limiting compared to the BREP model used by FreeCAD, and most proprietary
+industry software.
+
+That's when I heard about cadquery and build123d, and after a little more
+research that seems like a great place to start!
+
+* Initial Setup
+1. First, open the YACV frontend if you haven't already:
+
+ #+begin_src python
+from webbrowser import open_new_tab
+open_new_tab("https://yeicor-3d.github.io/yet-another-cad-viewer/")
+
+"""
+TODO: Run the frontend locally? pretty weird to rely on some github pages but YACV
+seems to work pretty darn well, especially considering how simple it is to set up.
+"""
+ #+end_src
+
+2. Make sure you've imported the libraries we'll be using to build & display models:
+
+ #+begin_src jupyter-python
+from build123d import *
+from yacv_server import show_all, clear, show
+
+def export_image(part, path: str):
+    view_port_origin=(-100, -50, 30)
+    visible, hidden = part.project_to_viewport(view_port_origin)
+    max_dimension = max(*Compound(children=visible + hidden).bounding_box().size)
+    exporter = ExportSVG(scale=100 / max_dimension)
+    exporter.add_layer("Visible")
+    exporter.add_layer("Hidden", line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
+    exporter.add_shape(visible, layer="Visible")
+    exporter.add_shape(hidden, layer="Hidden")
+    exporter.write(path)
+ #+end_src
+
+3. Finally, let's learn how to do CAD!
+
+* Example 1: simple boxes
+ #+begin_src jupyter-python :results replace file graphics :file renders/ex1.svg
+length, width, thickness = 10.0, 60.0, 10.0
+
+with BuildPart() as ex1:
+        Box(length, width, thickness)
+        Box(length, width, thickness, rotation=(0, 20, 90))
+
+show([ex1])
+print(ex1.part.show_topology())
+export_image(ex1.part, "renders/ex1.svg")
+ #+end_src
+
+ #+RESULTS:
+ [[file:renders/ex1.svg]]
+
+* Example 2: more advanced shape interactions
+#+begin_src jupyter-python  :results replace file graphics :file renders/part_projection.svg
+with BuildPart() as part:
+    Box(3, 3, 3)
+    with BuildSketch(*part.faces()):
+        Rectangle(1, 1)
+    extrude(amount=1)
+    chamfer(part.edges(), 0.499)
+    # fillet(part.edges()[0:4], 1)
+
+    with Locations((0, 0, 1.9)):
+        Sphere(0.45, mode=Mode.SUBTRACT)
+
+show([part])
+export_image(part.part, "renders/part_projection.svg")
+#+end_src
+
+#+RESULTS:
+[[file:renders/part_projection.svg]]
+
+
+* Playing with parametric screwholes
+#+begin_src jupyter-python :results replace file graphics :file renders/plate.svg
+size = 10
+thickness = 1
+
+def screwhole(bore: float):
+    Cylinder(bore * 2, bore * 4, align=(Align.CENTER, Align.CENTER, Align.MAX))
+    Hole(bore)
+    with Locations((0, 0, 0.5)):
+        Cylinder(bore * 2, thickness, mode=Mode.SUBTRACT)
+
+
+with BuildPart() as plate:
+    Box(size, size * 3, thickness)
+    for i in range(3):
+        with Locations((0, i * size - size)):
+            screwhole((1 + i) * 0.5 + 0.5)
+
+    fillet(plate.edges().group_by(Axis.Z)[-1], 0.3)
+
+sketch = Pos(X=9) * Circle(2)
+
+
+show([plate, sketch])
+export_image(plate.part, "renders/plate.svg")
+#+end_src
+
+#+RESULTS:
+[[file:plate.svg]]
