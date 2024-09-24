@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg width="102.0mm" height="37.429634mm" viewBox="-12.936365 -5.80453 31.79894 11.66885" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="121.999999mm" height="44.51556mm" viewBox="-19.017013 -6.938959 38.034026 13.877918" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="rgb(30,30,46)" stroke="rgb(0,0,0)" stroke-width="0.6235086292272511">
+      <path d="M -18.705259,6.627205 L -18.705259,-6.627205 L 18.705259,-6.627205 L 18.705259,6.627205 L -18.705259,6.627205" />
+    </g>
     <g fill="rgb(0,255,0)" stroke="rgb(200,200,200)" stroke-width="0.0280578883152263" id="Visible">
       <line x1="13.843207" y1="-1.697435" x2="13.843207" y2="-1.024509" />
       <line x1="13.843207" y1="-1.697435" x2="-12.624611" y2="2.192367" />
