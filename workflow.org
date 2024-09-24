@@ -54,7 +54,7 @@ def export_image(part: Part, path: str):
     visible, hidden = part.project_to_viewport(view_port_origin)
     bbox = Compound(children=visible + hidden).bounding_box()
     max_dimension = max(*bbox.size)
-    exporter = ExportSVG(scale=100 / max_dimension, fill_color=(30, 30, 46), line_weight=2)
+    exporter = ExportSVG(scale=100 / max_dimension, fill_color=(30, 30, 46), line_color=None)
     exporter.add_layer("Visible", fill_color=(0, 255, 0), line_color=(200, 200, 200))
     exporter.add_layer("Hidden", fill_color=(255, 0, 0), line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
     exporter.add_shape(Rectangle(width=bbox.size.X * 1.2, height=bbox.size.Y * 1.2))
