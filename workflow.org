@@ -58,23 +58,22 @@ def export_image(part, path: str):
 3. Finally, let's learn how to do CAD!
 
 * Example 1: simple boxes
- #+begin_src jupyter-python :results replace file graphics :file renders/ex1.svg
+ #+begin_src jupyter-python
 length, width, thickness = 10.0, 60.0, 10.0
 
 with BuildPart() as ex1:
         Box(length, width, thickness)
-        Box(length, width, thickness, rotation=(0, 20, 90))
+        Box(length, width, thickness, rotation=(0, 45, 90))
 
 show([ex1])
 print(ex1.part.show_topology())
 export_image(ex1.part, "renders/ex1.svg")
  #+end_src
 
- #+RESULTS:
  [[file:renders/ex1.svg]]
 
 * Example 2: more advanced shape interactions
-#+begin_src jupyter-python  :results replace file graphics :file renders/part_projection.svg
+#+begin_src jupyter-python
 with BuildPart() as part:
     Box(3, 3, 3)
     with BuildSketch(*part.faces()):
@@ -90,12 +89,11 @@ show([part])
 export_image(part.part, "renders/part_projection.svg")
 #+end_src
 
-#+RESULTS:
 [[file:renders/part_projection.svg]]
 
 
 * Playing with parametric screwholes
-#+begin_src jupyter-python :results replace file graphics :file renders/plate.svg
+#+begin_src jupyter-python
 size = 10
 thickness = 1
 
@@ -119,7 +117,7 @@ sketch = Pos(X=9) * Circle(2)
 
 show([plate, sketch])
 export_image(plate.part, "renders/plate.svg")
+
 #+end_src
 
-#+RESULTS:
-[[file:plate.svg]]
+[[file:renders/plate.svg]]
