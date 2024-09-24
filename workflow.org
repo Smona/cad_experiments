@@ -73,9 +73,9 @@ print(ex1.part.show_topology())
 export_image(ex1.part, "ex1")
  #+end_src
 
-[[file:meshes/ex1.stl][STL file]]
-
  [[file:renders/ex1.svg]]
+
+[[file:meshes/ex1.stl][STL file]]
 
 * Example 2: more advanced shape interactions
 #+begin_src jupyter-python
