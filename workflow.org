@@ -27,14 +27,11 @@ research that seems like a great place to start!
 * Initial Setup
 1. First, open the YACV frontend if you haven't already:
 
- #+begin_src python
+ #+begin_src jupyter-python :results none
+# TODO: Run the frontend locally? pretty weird to rely on some github pages but YACV
+# seems to work pretty darn well, especially considering how simple it is to set up.
 from webbrowser import open_new_tab
 open_new_tab("https://yeicor-3d.github.io/yet-another-cad-viewer/")
-
-"""
-TODO: Run the frontend locally? pretty weird to rely on some github pages but YACV
-seems to work pretty darn well, especially considering how simple it is to set up.
-"""
  #+end_src
 
 2. Make sure you've imported the libraries we'll be using to build & display models:
