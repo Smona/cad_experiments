@@ -65,9 +65,7 @@ def export_image(part: Part, path: str):
     export_stl(part, stl_path, ascii_format=True)
     txt = Path(stl_path).read_text()
     message = f"""
-    [[file:{svg_path}]]
-
-    [[file:{stl_path}][STL file]]
+    [[file:{svg_path}]]      [[file:{stl_path}][STL file]]
     """
     publish_display_data({'text/org': message })
  #+end_src
@@ -92,9 +90,7 @@ export_image(ex1.part, "ex1")
  #+RESULTS:
  :RESULTS:
 
-     [[file:renders/ex1.svg]]
-
-     [[file:meshes/ex1.stl][STL file]]
+     [[file:renders/ex1.svg]]      [[file:meshes/ex1.stl][STL file]]
  :END:
 
 
@@ -118,9 +114,7 @@ export_image(part.part, "part_projection")
 #+RESULTS:
 :RESULTS:
 
-    [[file:renders/part_projection.svg]]
-
-    [[file:meshes/part_projection.stl][STL file]]
+    [[file:renders/part_projection.svg]]      [[file:meshes/part_projection.stl][STL file]]
 :END:
 
 * Playing with parametric screwholes
@@ -154,7 +148,5 @@ export_image(plate.part, "plate")
 #+RESULTS:
 :RESULTS:
 
-    [[file:renders/plate.svg]]
-
-    [[file:meshes/plate.stl][STL file]]
+    [[file:renders/plate.svg]]      [[file:meshes/plate.stl][STL file]]
 :END:
