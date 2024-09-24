@@ -41,18 +41,21 @@ seems to work pretty darn well, especially considering how simple it is to set u
 
  #+begin_src jupyter-python
 from build123d import *
+from build123d.exporters3d import export_stl
 from yacv_server import show_all, clear, show
 
-def export_image(part, path: str):
+def export_image(part: Part, path: str):
     view_port_origin=(-100, -50, 30)
     visible, hidden = part.project_to_viewport(view_port_origin)
     max_dimension = max(*Compound(children=visible + hidden).bounding_box().size)
-    exporter = ExportSVG(scale=100 / max_dimension)
-    exporter.add_layer("Visible")
-    exporter.add_layer("Hidden", line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
+    exporter = ExportSVG(scale=100 / max_dimension, fill_color=(203, 166, 247), line_weight=2)
+    exporter.add_layer("Visible", fill_color=(0, 255, 0), line_color=(200, 200, 200))
+    exporter.add_layer("Hidden", fill_color=(255, 0, 0), line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
     exporter.add_shape(visible, layer="Visible")
     exporter.add_shape(hidden, layer="Hidden")
-    exporter.write(path)
+    exporter.write(f"renders/{path}.svg")
+
+    export_stl(part, f"meshes/{path}.stl", ascii_format=True)
  #+end_src
 
 3. Finally, let's learn how to do CAD!
@@ -67,8 +70,10 @@ with BuildPart() as ex1:
 
 show([ex1])
 print(ex1.part.show_topology())
-export_image(ex1.part, "renders/ex1.svg")
+export_image(ex1.part, "ex1")
  #+end_src
+
+[[file:meshes/ex1.stl][STL file]]
 
  [[file:renders/ex1.svg]]
 
@@ -86,11 +91,12 @@ with BuildPart() as part:
         Sphere(0.45, mode=Mode.SUBTRACT)
 
 show([part])
-export_image(part.part, "renders/part_projection.svg")
+export_image(part.part, "part_projection")
 #+end_src
 
 [[file:renders/part_projection.svg]]
 
+[[file:meshes/part_projection.stl][STL file]]
 
 * Playing with parametric screwholes
 #+begin_src jupyter-python
@@ -116,8 +122,10 @@ sketch = Pos(X=9) * Circle(2)
 
 
 show([plate, sketch])
-export_image(plate.part, "renders/plate.svg")
+export_image(plate.part, "plate")
 
 #+end_src
 
 [[file:renders/plate.svg]]
+
+[[file:meshes/plate.stl][STL file]]
