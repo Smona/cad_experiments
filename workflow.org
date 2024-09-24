@@ -1,5 +1,5 @@
 #+title: Initial Workflow Experiments
-#+PROPERTY: header-args :results silent :session cad
+#+PROPERTY: header-args :results replace :session cad
 
 I didn't get very far into learning CAD before I inevitably fell down the
 workflow rabbit hole. I started out just looking for the best open source CAD
@@ -43,9 +43,14 @@ seems to work pretty darn well, especially considering how simple it is to set u
 from build123d import *
 from build123d.exporters3d import export_stl
 from yacv_server import show_all, clear, show
+from pathlib import Path
+from IPython.display import publish_display_data
 
 def export_image(part: Part, path: str):
+    svg_path = f"renders/{path}.svg"
+    stl_path = f"meshes/{path}.stl"
     view_port_origin=(-100, -50, 30)
+
     visible, hidden = part.project_to_viewport(view_port_origin)
     max_dimension = max(*Compound(children=visible + hidden).bounding_box().size)
     exporter = ExportSVG(scale=100 / max_dimension, fill_color=(203, 166, 247), line_weight=2)
@@ -53,15 +58,23 @@ def export_image(part: Part, path: str):
     exporter.add_layer("Hidden", fill_color=(255, 0, 0), line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
     exporter.add_shape(visible, layer="Visible")
     exporter.add_shape(hidden, layer="Hidden")
-    exporter.write(f"renders/{path}.svg")
+    exporter.write(svg_path)
 
-    export_stl(part, f"meshes/{path}.stl", ascii_format=True)
+    export_stl(part, stl_path, ascii_format=True)
+    txt = Path(stl_path).read_text()
+    message = f"""
+    [[file:{svg_path}]]
+    [[file:{stl_path}][STL file]]
+    """
+    publish_display_data({'text/org': message })
  #+end_src
+
+ #+RESULTS:
 
 3. Finally, let's learn how to do CAD!
 
 * Example 1: simple boxes
- #+begin_src jupyter-python
+ #+begin_src jupyter-python :exports both
 length, width, thickness = 10.0, 60.0, 10.0
 
 with BuildPart() as ex1:
@@ -69,16 +82,20 @@ with BuildPart() as ex1:
         Box(length, width, thickness, rotation=(0, 45, 90))
 
 show([ex1])
-print(ex1.part.show_topology())
+# print(ex1.part.show_topology())
 export_image(ex1.part, "ex1")
  #+end_src
 
- [[file:renders/ex1.svg]]
+ #+RESULTS:
+ :RESULTS:
 
-[[file:meshes/ex1.stl][STL file]]
+     [[file:renders/ex1.svg]]
+     [[file:meshes/ex1.stl][STL file]]
+ :END:
+
 
 * Example 2: more advanced shape interactions
-#+begin_src jupyter-python
+#+begin_src jupyter-python :exports both
 with BuildPart() as part:
     Box(3, 3, 3)
     with BuildSketch(*part.faces()):
@@ -94,12 +111,15 @@ show([part])
 export_image(part.part, "part_projection")
 #+end_src
 
-[[file:renders/part_projection.svg]]
+#+RESULTS:
+:RESULTS:
 
-[[file:meshes/part_projection.stl][STL file]]
+    [[file:renders/part_projection.svg]]
+    [[file:meshes/part_projection.stl][STL file]]
+:END:
 
 * Playing with parametric screwholes
-#+begin_src jupyter-python
+#+begin_src jupyter-python :exports both
 size = 10
 thickness = 1
 
@@ -126,6 +146,9 @@ export_image(plate.part, "plate")
 
 #+end_src
 
-[[file:renders/plate.svg]]
+#+RESULTS:
+:RESULTS:
 
-[[file:meshes/plate.stl][STL file]]
+    [[file:renders/plate.svg]]
+    [[file:meshes/plate.stl][STL file]]
+:END:
