@@ -38,33 +38,8 @@ open_new_tab("https://yeicor-3d.github.io/yet-another-cad-viewer/")
 
  #+begin_src jupyter-python
 from build123d import *
-from build123d.exporters3d import export_stl
 from yacv_server import show_all, clear, show
-from pathlib import Path
-from IPython.display import publish_display_data
-
-def export_image(part: Part, path: str):
-    svg_path = f"renders/{path}.svg"
-    stl_path = f"meshes/{path}.stl"
-    view_port_origin=(-100, -50, 30)
-
-    visible, hidden = part.project_to_viewport(view_port_origin)
-    bbox = Compound(children=visible + hidden).bounding_box()
-    max_dimension = max(*bbox.size)
-    exporter = ExportSVG(scale=100 / max_dimension, fill_color=(30, 30, 46), line_color=None)
-    exporter.add_layer("Visible", line_color=(200, 200, 200))
-    exporter.add_layer("Hidden", line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
-    exporter.add_shape(Rectangle(width=bbox.size.X * 1.2, height=bbox.size.Y * 1.2))
-    exporter.add_shape(visible, layer="Visible")
-    exporter.add_shape(hidden, layer="Hidden")
-    exporter.write(svg_path)
-
-    export_stl(part, stl_path, ascii_format=True)
-    txt = Path(stl_path).read_text()
-    message = f"""
-    [[file:{svg_path}]]      [[file:{stl_path}][STL file]]
-    """
-    publish_display_data({'text/org': message })
+from cad_experiments.utils import export_image
  #+end_src
 
  #+RESULTS:
