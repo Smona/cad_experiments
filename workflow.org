@@ -122,3 +122,46 @@ export_image(plate.part, "plate")
 
     [[file:renders/plate.svg]]      [[file:meshes/plate.stl][STL file]]
 :END:
+
+* Tentacles
+#+begin_src jupyter-python :exports both :tangle cad_experiments/tentacles.py
+num_tentacles = 3
+tentacle_size = 50
+base_size = num_tentacles * tentacle_size
+import copy
+from random import randrange
+
+with BuildPart() as base:
+    Box(base_size, base_size, 10)
+
+wiggliness = 10
+
+with BuildPart(base.faces().filter_by(Plane.XY)[1]) as strands:
+    # with GridLocations(tentacle_size, tentacle_size, num_tentacles, num_tentacles) as loc:
+    for i in range(num_tentacles):
+        for j in range(num_tentacles):
+           base_pos = (i * tentacle_size, j * tentacle_size, 0)
+           with BuildLine() as path:
+               points = [(0,0,0)] + [
+                   (randrange(-wiggliness, wiggliness), randrange(-wiggliness, wiggliness), 20 * (i + 1))
+                   for i in range(10)
+               ]
+               Polyline(*points)
+           with BuildSketch() as outline:
+                with Locations((base_pos[0] - base_size / num_tentacles, base_pos[1] - base_size * .5 / num_tentacles, base_pos[2])):
+                    Circle(tentacle_size / 3)
+           # extrude(amount=10)
+           sweep()
+
+tentacles = Compound(children=[base.part, strands.part])
+
+show([base.part, strands.part])
+# show([Compound(children=[base.part, tentacles.part])])
+export_image(strands.part, "tentacles")
+#+end_src
+
+#+RESULTS:
+:RESULTS:
+
+    [[file:renders/tentacles.svg]]      [[file:meshes/tentacles.stl][STL file]]
+:END:
