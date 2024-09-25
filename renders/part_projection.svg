@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg width="111.22989mm" height="120.090004mm" viewBox="-2.685992 -2.899946 5.371983 5.799893" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="166.799832mm" height="180.090003mm" viewBox="-2.685267 -2.899222 5.370534 5.798444" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <g transform="scale(1,-1)" stroke-linecap="round">
-    <g fill="rgb(30,30,46)" stroke="none" stroke-width="0.00434665960003428">
+    <g fill="rgb(30,30,46)" stroke="none" stroke-width="0.0028977730666895204">
       <path d="M -2.683818,2.897773 L -2.683818,-2.897773 L 2.683818,-2.897773 L 2.683818,2.897773 L -2.683818,2.897773" />
     </g>
-    <g fill="none" stroke="rgb(200,200,200)" stroke-width="0.00434665960003428" id="Visible">
+    <g fill="none" stroke="rgb(200,200,200)" stroke-width="0.0028977730666895204" id="Visible">
       <line x1="0.224501" y1="-1.408878" x2="0.224501" y2="0.524624" />
       <line x1="0.224501" y1="-1.408878" x2="-1.566142" y2="-1.176682" />
       <line x1="0.224501" y1="0.524624" x2="-1.566142" y2="0.75682" />
@@ -228,7 +228,7 @@
       <line x1="0.000447" y1="2.436032" x2="-0.086697" y2="2.202637" />
       <line x1="-0.001342" y1="2.436264" x2="-0.175631" y2="2.27067" />
     </g>
-    <g fill="none" stroke="rgb(99,99,99)" stroke-width="0.00434665960003428" id="Hidden" stroke-dasharray="0.00011 0.013095">
+    <g fill="none" stroke="rgb(99,99,99)" stroke-width="0.0028977730666895204" id="Hidden" stroke-dasharray="7.4e-05 0.00873">
       <line x1="-0.893086" y1="-0.924788" x2="-0.894874" y2="-0.924556" />
       <line x1="-0.894491" y1="-0.925185" x2="-0.894874" y2="-0.924556" />
       <line x1="-0.894874" y1="-0.924556" x2="-1.341194" y2="-0.384754" />

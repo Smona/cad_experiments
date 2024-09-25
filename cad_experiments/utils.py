@@ -12,7 +12,7 @@ def export_image(part: Part, path: str):
     bbox = Compound(visible + hidden).bounding_box()
     max_dimension = max(*bbox.size)
     exporter = ExportSVG(
-        scale=100 / max_dimension, fill_color=(30, 30, 46), line_color=None
+        scale=150 / max_dimension, fill_color=(30, 30, 46), line_color=None
     )
     exporter.add_layer("Visible", line_color=(200, 200, 200))
     exporter.add_layer("Hidden", line_color=(99, 99, 99), line_type=LineType.ISO_DOT)
