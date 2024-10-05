@@ -63,7 +63,6 @@ flange_width = 12
 with BuildPart() as part2:
     with BuildSketch():
         RectangleRounded(length, width, outer_radius)
-        # TODO: should be off-center
         with Locations((2.5, 0)):
             SlotOverall(90, 12, mode=Mode.SUBTRACT)
     container = extrude(amount=total_height)
