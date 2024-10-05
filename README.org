@@ -1,0 +1,21 @@
+#+title: Mel's CAD experiments
+#+PROPERTY: header-args :results replace :session cad
+
+* Workflow experiments
+I started out just [[./workflow.org][figuring out my workflow]].
+
+* Too Tall Toby Tutorials
+
+** 01 Bearing Bracket
+ #+begin_src jupyter-python :exports both
+from cad_experiments.utils import export_image
+from cad_experiments.tttt.bearing_bracket import part2
+
+export_image(part2.part, "bearing_bracket")
+ #+end_src
+
+ #+RESULTS:
+ :RESULTS:
+
+     [[file:renders/bearing_bracket.svg]]      [[file:meshes/bearing_bracket.stl][STL file]]
+ :END:

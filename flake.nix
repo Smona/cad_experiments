@@ -21,6 +21,7 @@
         (p2n.mkPoetryEnv {
           projectDir = ./.;
           preferWheels = true;
+          python = pkgs.python312;
           overrides = p2n.defaultPoetryOverrides.extend (
             final: prev: {
               trianglesolver = prev.trianglesolver.overridePythonAttrs (old: {
@@ -47,15 +48,17 @@
               voila = prev.voila.overridePythonAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [ prev.jupyter-packaging ];
               });
-              # https://github.com/nix-community/poetry2nix/issues/1814
-              tinycss2 = prev.tinycss2.overridePythonAttrs (old: {
-                # remove pytest-runner
-                buildInputs = [ ];
-              });
+              rtree = pkgs.python312Packages.rtree;
+              pyqtwebengine = pkgs.python312Packages.pyqtwebengine;
+              pyqt5 = pkgs.python312Packages.pyqt5;
               # https://github.com/nix-community/poetry2nix/issues/1814
               pillow = prev.pillow.overridePythonAttrs (old: {
                 # remove pytest-runner
                 nativeBuildInputs = [ pkgs.pkg-config ];
+              });
+              cq-editor = prev.pillow.overridePythonAttrs (old: {
+                # remove pytest-runner
+                buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.qt5.full ];
               });
               cad-viewer-widget = prev.cad-viewer-widget.overridePythonAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [
@@ -69,6 +72,7 @@
         }).env.overrideAttrs
           (oldAttrs: {
             buildInputs = [
+              pkgs.stdenv.cc
               pkgs.poetry
               pkgs.watchexec
               (pkgs.writeShellScriptBin "start" "watchexec -w test.py python test.py")

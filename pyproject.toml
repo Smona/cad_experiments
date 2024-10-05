@@ -7,9 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-build123d = "^0.5.0"
-yacv-server = "^0.8.10"
+jupyter-cadquery = "^3.5.2"
+lxml-html-clean = "0.2.2"
+cadquery = "^2.4.0"
 jupyterlab = "~3.4.0"
+build123d = "^0.7.0"
 
 [tool.poetry.scripts]
 test = 'test:main'
