@@ -5,6 +5,9 @@
 I started out just [[./workflow.org][figuring out my workflow]].
 
 * Too Tall Toby Tutorials
+Then, after settling on build123d and figuring out how to iterate quickly and
+present results here, I started working through the [[https://build123d.readthedocs.io/en/latest/tttt.html][Too Tall Toby Tutorials]] from
+the docs to start building up my skills. Here are the ones I've done so far:
 
 ** 01 Bearing Bracket
 [[file:cad_experiments/tttt/bearing_bracket.py][View Source]]
