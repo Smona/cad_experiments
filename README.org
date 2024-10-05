@@ -7,6 +7,7 @@ I started out just [[./workflow.org][figuring out my workflow]].
 * Too Tall Toby Tutorials
 
 ** 01 Bearing Bracket
+[[file:cad_experiments/tttt/bearing_bracket.py][View Source]]
  #+begin_src jupyter-python :exports results
 from cad_experiments.utils import export_image
 from cad_experiments.tttt.bearing_bracket import part2
