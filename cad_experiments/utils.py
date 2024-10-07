@@ -27,3 +27,9 @@ def export_image(part: Part, path: str):
     [[file:{svg_path}]]      [[file:{stl_path}][STL file]]
     """
     publish_display_data({"text/org": message})
+
+
+def get_mass_g(part: Part, density_kg_m3: float) -> float:
+    volume_m3 = part.volume / 1000**3
+    mass_kg = volume_m3 * density_kg_m3
+    return mass_kg * 1000

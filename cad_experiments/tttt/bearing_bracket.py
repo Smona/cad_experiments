@@ -2,6 +2,8 @@ from math import radians, tan
 from build123d import *
 from jupyter_cadquery.viewer.client import show
 
+from cad_experiments.utils import get_mass_g
+
 length = 115
 width = 50
 outer_radius = 6
@@ -111,12 +113,7 @@ with BuildPart() as part2:
 
     extrude(amount=-width / 2, both=True, mode=Mode.SUBTRACT)
 
-volume_m3 = part2.part.volume / 1000**3
-density = 7800
-mass_kg = volume_m3 * density
-mass_g = mass_kg * 1000
-
-print(f"part mass: {mass_g}")
+print(f"part mass: {get_mass_g(part2.part, 7800)}")
 
 # Reference implementation:
 # They ran into the same issue as I did with filleting, but instead

@@ -20,6 +20,23 @@ export_image(part2.part, "bearing_bracket")
 
  #+RESULTS:
  :RESULTS:
+ : part mass: 797.146174362524
 
      [[file:renders/bearing_bracket.svg]]      [[file:meshes/bearing_bracket.stl][STL file]]
+ :END:
+
+** 02 Post Cap
+[[file:cad_experiments/tttt/post_cap.py][View Source]]
+ #+begin_src jupyter-python :exports results
+from cad_experiments.utils import export_image
+from cad_experiments.tttt.post_cap import part
+
+export_image(part.part, "post_cap")
+ #+end_src
+
+ #+RESULTS:
+ :RESULTS:
+ : part mass: 43.09336513967201
+
+     [[file:renders/post_cap.svg]]      [[file:meshes/post_cap.stl][STL file]]
  :END:
