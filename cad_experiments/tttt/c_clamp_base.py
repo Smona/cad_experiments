@@ -8,7 +8,7 @@ length = 95
 height = 34
 
 
-def build_clamp_base(render=False):
+def build_clamp_base():
     with BuildPart() as part:
         with Locations((7, 0, 0)):
             Box(14, width, height)
@@ -28,13 +28,12 @@ def build_clamp_base(render=False):
         with Locations(start_cap.faces().filter_by(Plane.YZ)[1]):
             CounterSinkHole(5.5 / 2, 11.2 / 2, counter_sink_angle=90)
 
-    if render:
-        show(part)
-    return part
+    return part.part
 
 
 # Run script to update part in jupyter-cadquery
-build_clamp_base(True)
+part = build_clamp_base()
+show(part)
 
 # Reference implementation:
 #

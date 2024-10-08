@@ -113,7 +113,8 @@ with BuildPart() as part2:
 
     extrude(amount=-width / 2, both=True, mode=Mode.SUBTRACT)
 
-print(f"part mass: {get_mass_g(part2.part, 7800)}")
+part = part2.part
+show(part)
 
 # Reference implementation:
 # They ran into the same issue as I did with filleting, but instead

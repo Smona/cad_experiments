@@ -12,15 +12,15 @@ the docs to start building up my skills. Here are the ones I've done so far:
 ** 01 Bearing Bracket
 [[file:cad_experiments/tttt/bearing_bracket.py][View Source]]
  #+begin_src jupyter-python :exports results
-from cad_experiments.utils import export_image
-from cad_experiments.tttt.bearing_bracket import part2
+from cad_experiments.tttt.bearing_bracket import part
+from cad_experiments.utils import display_part
 
-export_image(part2.part, "bearing_bracket")
+display_part(part, "bearing_bracket", 7800)
  #+end_src
 
  #+RESULTS:
  :RESULTS:
- : part mass: 797.146174362524
+ : part mass: 797.15g
 
      [[file:renders/bearing_bracket.svg]]      [[file:meshes/bearing_bracket.stl][STL file]]
  :END:
@@ -28,15 +28,15 @@ export_image(part2.part, "bearing_bracket")
 ** 02 Post Cap
 [[file:cad_experiments/tttt/post_cap.py][View Source]]
  #+begin_src jupyter-python :exports results
-from cad_experiments.utils import export_image
 from cad_experiments.tttt.post_cap import part
+from cad_experiments.utils import display_part
 
-export_image(part.part, "post_cap")
+display_part(part, "post_cap", 1020)
  #+end_src
 
  #+RESULTS:
  :RESULTS:
- : part mass: 43.09336513967201
+ : part mass: 43.09g
 
      [[file:renders/post_cap.svg]]      [[file:meshes/post_cap.stl][STL file]]
  :END:
@@ -44,10 +44,10 @@ export_image(part.part, "post_cap")
 ** 03 C Clamp Base
 [[file:cad_experiments/tttt/post_cap.py][View Source]]
  #+begin_src jupyter-python :exports results
-from cad_experiments.tttt.c_clamp_base import build_clamp_base
+from cad_experiments.tttt.c_clamp_base import part
 from cad_experiments.utils import display_part
 
-display_part(build_clamp_base(), "c_clamp_base", 2700)
+display_part(part, "c_clamp_base", 2700)
  #+end_src
 
  #+RESULTS:
