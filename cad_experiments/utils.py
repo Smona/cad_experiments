@@ -33,3 +33,9 @@ def get_mass_g(part: Part, density_kg_m3: float) -> float:
     volume_m3 = part.volume / 1000**3
     mass_kg = volume_m3 * density_kg_m3
     return mass_kg * 1000
+
+
+def display_part(part: Part, name: str, density_kg_m3: float):
+    """High-level helper for presenting CQ parts in Org documents on Github."""
+    print(f"part mass: {round(get_mass_g(part, density_kg_m3), 2)}g")
+    export_image(part, name)

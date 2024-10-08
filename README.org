@@ -44,17 +44,15 @@ export_image(part.part, "post_cap")
 ** 03 C Clamp Base
 [[file:cad_experiments/tttt/post_cap.py][View Source]]
  #+begin_src jupyter-python :exports results
-from cad_experiments.utils import export_image, get_mass_g
 from cad_experiments.tttt.c_clamp_base import build_clamp_base
+from cad_experiments.utils import display_part
 
-part = build_clamp_base()
-print(get_mass_g(part.part, 2700))
-export_image(part.part, "c_clamp_base")
+display_part(build_clamp_base(), "c_clamp_base", 2700)
  #+end_src
 
  #+RESULTS:
  :RESULTS:
- : 96.13497674359179
+ : part mass: 96.13g
 
      [[file:renders/c_clamp_base.svg]]      [[file:meshes/c_clamp_base.stl][STL file]]
  :END:
