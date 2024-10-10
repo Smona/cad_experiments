@@ -56,3 +56,19 @@ display_part(part, "c_clamp_base", 2700)
 
      [[file:renders/c_clamp_base.svg]]      [[file:meshes/c_clamp_base.stl][STL file]]
  :END:
+
+** 04 Angle Bracket
+[[file:cad_experiments/tttt/angle_bracket.py][View Source]]
+ #+begin_src jupyter-python :exports results
+from cad_experiments.tttt.angle_bracket import part
+from cad_experiments.utils import display_part
+
+display_part(part, "angle_bracket", 7800)
+ #+end_src
+
+ #+RESULTS:
+ :RESULTS:
+ : part mass: 310.0g
+
+     [[file:renders/angle_bracket.svg]]      [[file:meshes/angle_bracket.stl][STL file]]
+ :END:
