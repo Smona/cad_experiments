@@ -72,3 +72,19 @@ display_part(part, "angle_bracket", 7800)
 
      [[file:renders/angle_bracket.svg]]      [[file:meshes/angle_bracket.stl][STL file]]
  :END:
+
+** 05 Paste Sleeve
+[[file:cad_experiments/tttt/angle_bracket.py][View Source]]
+ #+begin_src jupyter-python :exports results
+from cad_experiments.tttt.paste_sleeve import part
+from cad_experiments.utils import display_part
+
+display_part(part.part, "paste_sleeve", 1020)
+ #+end_src
+
+ #+RESULTS:
+ :RESULTS:
+ : part mass: 56.73g
+
+     [[file:renders/paste_sleeve.svg]]      [[file:meshes/paste_sleeve.stl][STL file]]
+ :END:
