@@ -88,3 +88,19 @@ display_part(part.part, "paste_sleeve", 1020)
 
      [[file:renders/paste_sleeve.svg]]      [[file:meshes/paste_sleeve.stl][STL file]]
  :END:
+
+** 06 Bearing Jig
+[[file:cad_experiments/tttt/bearing_jig.py][View Source]]
+ #+begin_src jupyter-python :exports results
+from cad_experiments.tttt.bearing_jig import part
+from cad_experiments.utils import display_part
+
+display_part(part.part, "bearing_jig", 7800)
+ #+end_src
+
+ #+RESULTS:
+ :RESULTS:
+ : part mass: 328.02g
+
+     [[file:renders/bearing_jig.svg]]      [[file:meshes/bearing_jig.stl][STL file]]
+ :END:

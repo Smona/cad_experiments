@@ -3,6 +3,9 @@
 from build123d import *
 from jupyter_cadquery.viewer.client import show
 
+# I'm not sure why I'm getting a different answer than TTT,
+# I tried the reference method too and got the same answer.
+# But at least it's within tolerance! and a bit lighter.
 with BuildPart() as part:
     for thickness, mode in ((3, Mode.ADD), (0, Mode.SUBTRACT)):
         diff = thickness * 2
