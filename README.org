@@ -42,7 +42,7 @@ display_part(part, "post_cap", 1020)
  :END:
 
 ** 03 C Clamp Base
-[[file:cad_experiments/tttt/post_cap.py][View Source]]
+[[file:cad_experiments/tttt/c_clamp_base.py][View Source]]
  #+begin_src jupyter-python :exports results
 from cad_experiments.tttt.c_clamp_base import part
 from cad_experiments.utils import display_part
@@ -74,7 +74,7 @@ display_part(part, "angle_bracket", 7800)
  :END:
 
 ** 05 Paste Sleeve
-[[file:cad_experiments/tttt/angle_bracket.py][View Source]]
+[[file:cad_experiments/tttt/paste_sleeve.py][View Source]]
  #+begin_src jupyter-python :exports results
 from cad_experiments.tttt.paste_sleeve import part
 from cad_experiments.utils import display_part
